@@ -8,9 +8,10 @@ app.use(async (ctx, next) => {
 
 app.use(router.routes());
 
-getPort().then(finialPort => {
-    app.listen(finialPort, () => {
-        console.log("Server port: ", finialPort);
-    });
-});
+getPort().then(port => {
 
+    app.listen(port, () => {
+        console.log("Server port: ", port);
+    });
+
+});

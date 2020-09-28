@@ -1,19 +1,16 @@
 const config = require("./config.json");
 const net = require("net");
-const { rejects } = require("assert");
-const { resolve } = require("path");
 
 let port = process.env.PORT || config.port;
 port = port >= 3000 ? port : 3000;
 
-
-
-function random(size) {
-    return Math.floor(Math.random() * size);
-}
-
 function sleep(time = 100) {
+
     return sleep_base(random(time));
+
+    function random(size) {
+        return Math.floor(Math.random() * size);
+    }
 
     function sleep_base(time) {
         return new Promise((resolve, rejects) => {
@@ -60,7 +57,9 @@ async function getPort() {
         }
 
     } catch (err) {
+
         console.error(err);
+
     }
 }
 
