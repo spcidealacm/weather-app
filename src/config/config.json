@@ -1,3 +1,5 @@
 {
-    "port": 3000
+    "port": 3000,
+    "weather_address": "http://api.openweathermap.org/data/2.5/",
+    "key":"8a5880bbdd1a596f7ffa86e17b6527f9"
 }

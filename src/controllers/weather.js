@@ -1,18 +1,20 @@
-const position = require("./position");
-const temperature = require("./temperature");
+const { CityInfo } = require("./position");
+// const temperature = require("./temperature");
+const { getWeatherHttp } = require("../config");
+const { GetWeather } = require("../services");
 
-function weather(ctx, next) {
-
-    let { city } = ctx.params;
-
-    if ("local" === city) {
-        city = position();
-    }
-
+async function Weather(ctx, next) {
+    let { city, country } = ctx.params;
+    let cityInfo = CityInfo(city, country);
     let obj = new Object();
-    obj.city = city;
-    obj.temperature = temperature(city);
-    ctx.body = obj;
+
+    if (0 === cityInfo.length) {
+        obj.error = "cannot find city";
+        ctx.body = obj;
+    } else {
+        let address = getWeatherHttp(cityInfo[0]);
+        ctx.body = await GetWeather(address);
+    }
 }
 
-module.exports.weather = weather;
+module.exports.Weather = Weather;

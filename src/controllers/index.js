@@ -1,3 +1,3 @@
-const { weather } = require("./weather");
+const { Weather } = require("./weather");
 
-module.exports.weather = weather;
+module.exports.Weather = Weather;

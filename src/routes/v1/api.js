@@ -1,6 +1,7 @@
 const { router } = require("../../loaders");
-const { weather } = require("../../controllers");
+const { Weather } = require("../../controllers");
 
-router.get("/position/:city", weather);
+router.get("/position/:city", Weather);
+router.get("/position/:city/:country", Weather);
 
 module.exports.router = router;

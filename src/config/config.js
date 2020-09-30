@@ -5,7 +5,6 @@ let port = process.env.PORT || config.port;
 port = port >= 3000 ? port : 3000;
 
 function sleep(time = 100) {
-
     return sleep_base(random(time));
 
     function random(size) {
@@ -20,11 +19,9 @@ function sleep(time = 100) {
 }
 
 function portIsUsed(testPort) {
-
     const server = net.createServer().listen(testPort);
 
     return new Promise((resolve, rejects) => {
-
         server.on("listening", () => {
             server.close();
             resolve(false);
@@ -37,16 +34,13 @@ function portIsUsed(testPort) {
                 rejects(err);
             }
         });
-
     });
 }
 
 async function getPort() {
-
     await sleep();
 
     try {
-
         while (true) {
             if (await portIsUsed(port)) {
                 port += 1;
@@ -55,12 +49,24 @@ async function getPort() {
                 return port;
             }
         }
-
     } catch (err) {
-
         console.error(err);
-
     }
 }
 
+function getWeatherHttp(cityInfo) {
+    let addr = config.weather_address;
+    let city = `id=${cityInfo.id}`;
+    let lat = `lat=${cityInfo.coord.lat}`;
+    let lon = `&lon=${cityInfo.coord.lon}`;
+    let part = "";
+    let key = `&APPID=${config.key}`;
+    let method = `onecall?`;
+    let para = `${lat}${lon}${part}${key}`;
+    let result = `${addr}${method}${para}`;
+    console.log(result);
+    return result;
+}
+
 module.exports.getPort = getPort;
+module.exports.getWeatherHttp = getWeatherHttp;
