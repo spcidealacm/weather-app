@@ -1,10 +1,17 @@
 const got = require("got");
 
-async function GetWeather(address) {
+async function GetWeather(address, city) {
     try {
         const response = await got(address);
         const result = JSON.parse(response.body);
-        return ConverWeatherInfo(result.current);
+        let obj = new Object();
+        obj.city = city;
+        obj.lat = result.lat;
+        obj.lon = result.lon;
+        obj.timezone = result.timezone;
+        obj.current = ConverWeatherInfo(result.current);
+
+        return obj;
     } catch (error) {
         console.log(error.response.body);
     }

@@ -56,7 +56,7 @@ async function getPort() {
 
 function getWeatherHttp(cityInfo) {
     let addr = config.weather_address;
-    let city = `id=${cityInfo.id}`;
+    let id = `id=${cityInfo.id}`;
     let lat = `lat=${cityInfo.coord.lat}`;
     let lon = `&lon=${cityInfo.coord.lon}`;
     let part = "";

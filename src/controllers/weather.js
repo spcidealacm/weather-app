@@ -13,7 +13,8 @@ async function Weather(ctx, next) {
         ctx.body = obj;
     } else {
         let address = getWeatherHttp(cityInfo[0]);
-        ctx.body = await GetWeather(address);
+        let city = cityInfo[0].name;
+        ctx.body = await GetWeather(address, city);
     }
 }
 
