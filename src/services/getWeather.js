@@ -32,7 +32,7 @@ function GetTime(dt) {
 }
 
 function GetTemp(temp) {
-    return (temp - 273).toFixed(2);
+    return Number((temp - 273).toFixed(2));
 }
 
 function ConverWeatherInfo(current) {
