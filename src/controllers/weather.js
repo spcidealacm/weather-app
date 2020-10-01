@@ -1,5 +1,4 @@
-const { CityInfo } = require("./position");
-// const temperature = require("./temperature");
+const { CityInfo } = require("./cityInfo");
 const { getWeatherHttp } = require("../config");
 const { GetWeather } = require("../services");
 

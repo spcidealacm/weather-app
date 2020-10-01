@@ -1,26 +1,14 @@
-const cityInfo = require("../config/city.list.json");
+const { getPositionHttp } = require("../config");
+const { GetPostionInfo } = require("../services");
 
-function CityInfo(city, country = undefined) {
-    let result = new Array();
+async function Position(ctx, next) {
+    let { lat, lon } = ctx.params;
+    let obj = new Object();
+    obj.lat = lat;
+    obj.lon = lon;
 
-    if (country) {
-        for (let i = 0; i < cityInfo.length; i++) {
-            if (
-                cityInfo[i].name.toUpperCase() === city.toUpperCase() &&
-                cityInfo[i].country.toUpperCase() === country.toUpperCase()
-            ) {
-                result.push(cityInfo[i]);
-            }
-        }
-    } else {
-        for (let i = 0; i < cityInfo.length; i++) {
-            if (cityInfo[i].name.toUpperCase() === city.toUpperCase()) {
-                result.push(cityInfo[i]);
-            }
-        }
-    }
-
-    return result;
+    let address = getPositionHttp(obj);
+    ctx.body = await GetPostionInfo(address);
 }
 
-module.exports.CityInfo = CityInfo;
+module.exports.Position = Position;
