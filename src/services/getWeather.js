@@ -1,11 +1,13 @@
 const got = require("got");
 
-async function GetWeather(address, city) {
+async function GetWeather(address, city = undefined) {
     try {
         const response = await got(address);
         const result = JSON.parse(response.body);
         let obj = new Object();
-        obj.city = city;
+        if (city) {
+            obj.city = city;
+        }
         obj.lat = result.lat;
         obj.lon = result.lon;
         obj.timezone = result.timezone;

@@ -1,5 +1,5 @@
 const { CityInfo } = require("./cityInfo");
-const { getWeatherHttp } = require("../config");
+const { getWeatherHttp, getPosWeatherHttp } = require("../config");
 const { GetWeather } = require("../services");
 
 async function Weather(ctx, next) {
@@ -17,4 +17,14 @@ async function Weather(ctx, next) {
     }
 }
 
+async function WeatherPos(ctx, next) {
+    let { lat, lon } = ctx.params;
+    let obj = new Object();
+    obj.lat = lat;
+    obj.lon = lon;
+    let address = getPosWeatherHttp(obj);
+    ctx.body = await GetWeather(address);
+}
+
 module.exports.Weather = Weather;
+module.exports.WeatherPos = WeatherPos;

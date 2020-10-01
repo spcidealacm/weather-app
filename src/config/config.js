@@ -56,9 +56,21 @@ async function getPort() {
 
 function getWeatherHttp(cityInfo) {
     let addr = config.weather_address;
-    let id = `id=${cityInfo.id}`;
     let lat = `lat=${cityInfo.coord.lat}`;
     let lon = `&lon=${cityInfo.coord.lon}`;
+    let part = "";
+    let key = `&APPID=${config.weather_key}`;
+    let method = `onecall?`;
+    let para = `${lat}${lon}${part}${key}`;
+    let result = `${addr}${method}${para}`;
+    console.log(result);
+    return result;
+}
+
+function getPosWeatherHttp(Position) {
+    let addr = config.weather_address;
+    let lat = `lat=${Position.lat}`;
+    let lon = `&lon=${Position.lon}`;
     let part = "";
     let key = `&APPID=${config.weather_key}`;
     let method = `onecall?`;
@@ -81,3 +93,4 @@ function getPositionHttp(position) {
 module.exports.getPort = getPort;
 module.exports.getWeatherHttp = getWeatherHttp;
 module.exports.getPositionHttp = getPositionHttp;
+module.exports.getPosWeatherHttp = getPosWeatherHttp;
