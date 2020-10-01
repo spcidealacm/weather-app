@@ -18,12 +18,11 @@ app.use(async (ctx, next) => {
 
 app.use(router.routes());
 
-// getPort().then((port) => {
-//     http.createServer(app.callback()).listen(port);
-//     console.log("http server port: ", port);
-// });
-
 getPort().then((port) => {
-    https.createServer(options, app.callback()).listen(port);
-    console.log("https server port: ", port);
+    http.createServer(app.callback()).listen(port);
+    console.log("http server port: ", port);
+    getPort().then((port) => {
+        https.createServer(options, app.callback()).listen(port);
+        console.log("https server port: ", port);
+    });
 });
