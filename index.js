@@ -1,4 +1,4 @@
-const { app } = require("./src/loaders");
+const { app, cors } = require("./src/loaders");
 const { router } = require("./src/routes/v1");
 const { getPort } = require("./src/config");
 
@@ -15,6 +15,8 @@ const options = {
 app.use(async (ctx, next) => {
     await next();
 });
+
+app.use(cors());
 
 app.use(router.routes());
 
