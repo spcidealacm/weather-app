@@ -8,8 +8,8 @@ const fs = require("fs");
 // const { default: enforceHttps } = require("koa-sslify");
 
 const options = {
-    key: fs.readFileSync("./src/config/ssl.key"), //ssl文件路径
-    cert: fs.readFileSync("./src/config/ssl.crt"), //ssl文件路径
+    key: fs.readFileSync("./src/config/aitopcoder-com.key"), //ssl文件路径
+    cert: fs.readFileSync("./src/config/aitopcoder-com.crt"), //ssl文件路径
 };
 
 app.use(async (ctx, next) => {
