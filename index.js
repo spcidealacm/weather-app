@@ -5,11 +5,10 @@ const { getPort } = require("./src/config");
 const http = require("http");
 const https = require("https");
 const fs = require("fs");
-// const { default: enforceHttps } = require("koa-sslify");
 
 const options = {
-    key: fs.readFileSync("./src/config/aitopcoder-com.key"), //ssl文件路径
-    cert: fs.readFileSync("./src/config/aitopcoder-com.crt"), //ssl文件路径
+    key: fs.readFileSync("./src/config/aitopcoder-com.key"), // https ssl key
+    cert: fs.readFileSync("./src/config/aitopcoder-com.crt"), // https ssl crt
 };
 
 app.use(async (ctx, next) => {
